@@ -3,18 +3,28 @@
 #include "src/eh_pointing.h"
 
 // see https://docs.qmk.fm/#/keycodes for keycodes
-#define KC_AWDW  LALT(LSFT(KC_H))
-#define KC_AWIW  LALT(LSFT(KC_L))
-#define KC_AWMM  LCTRL(LGUI(KC_ENTER))
-#define KC_MCHAT  LCTRL(LSFT(KC_M))
-#define KC_MMON  LGUI(LSFT(KC_LEFT))
-#define KC_MXL   LGUI(KC_LEFT)
-#define KC_MXR   LGUI(KC_RIGHT)
-#define KC_MAX   LGUI(KC_UP)
-#define KC_MIN   LGUI(KC_DOWN)
-#define KC_MDT   LGUI(LCTL(KC_D))
-#define KC_DTL   LGUI(LCTL(KC_LEFT))
-#define KC_DTR   LGUI(LCTL(KC_RIGHT))
+
+#define KC_MWL   LGUI(LCTL(KC_LEFT)) // Switch to the previous virtual desktop
+#define KC_MWR   LGUI(LCTL(KC_RIGHT)) //Switch to the next virtual desktop
+#define KC_MXL   LGUI(LSFT(KC_LEFT)) // Move current window to the screen on the left of current screen
+#define KC_MXR   LGUI(LSFT(KC_RIGHT)) // // Moce current window to the screen on the right of current screen
+#define KC_MWSL  LGUI(LCTL(LSFT(KC_LEFT))) // Move current window to the previous desktop - see  https://superuser.com/questions/1685845/moving-current-window-to-another-desktop-in-windows-11-using-shortcut-keys
+#define KC_MWSR  LGUI(LCTL(LSFT(KC_RIGHT))) // Move current window to the next desktop - see https://superuser.com/questions/1685845/moving-current-window-to-another-desktop-in-windows-11-using-shortcut-keys
+#define KC_MAX   LGUI(KC_LEFT) // Snap current window to the left side of the screen
+#define KC_MIN   LGUI(KC_RIGHT) // Snap current window to the right side of the screen
+#define KC_MAXI  LGUI(KC_UP) // Maximize current window
+#define KC_MINI  LGUI(KC_DOWN) // Minimize curreng windows
+#define KC_GMX   LGUI(LSFT(KC_GRAVE))
+
+#define KC_WSV  LCTL(LSFT(KC_ENTER)) // wezterm split pane vertical
+#define KC_WSH  LCTL(LSFT(KC_EQL)) // wezterm split pane horizontal
+#define KC_WRP  LALT(LCTL(KC_F)) // wezterm rotate/promote pane
+#define KC_WNP  LSFT(LCTL(KC_LEFT_BRACKET)) // wezterm move to next pane
+#define KC_WPP  LSFT(LCTL(KC_RIGHT_BRACKET)) // wezterm move to previously pane
+#define KC_WIF  LCTL(KC_EQL) // wezterm increase front size
+#define KC_WDF  LCTL(KC_MINUS) // wezterm decrease font size
+#define KC_WRF  LCTL(KC_0) // wezterm reset front size
+#define KC_Launch LGUI(LALT(KC_SPACE))
 
 enum bgk_keycodes {
   KCAE = SAFE_RANGE,
@@ -113,10 +123,10 @@ _______,   KC_AT,     KC_LBRC,    KC_CIRC,  KC_RBRC,   KC_TILD,                 
     ),
 
 [_RAISE] = LAYOUT(
-_______,   _______,   _______,    _______,  _______,   _______,                               _______,   _______,   _______,   _______,   _______,   _______,
-_______,   KC_MMON,   KC_DTL,     KC_DTR,   KC_MDT,    _______,                               _______,   KC_HOME,   KC_UP,     KC_END,    KC_INS,    _______,
-_______,   KC_MXL,    KC_MIN,     KC_MAX,   KC_MXR,    _______,                                         _______,   KC_LEFT,   KC_DOWN,   KC_RGHT,   _______,   _______,
-_______,   _______,   _______,    _______,  _______,   _______,                                         _______,   KC_PGUP,   _______,   KC_PGDN,   KC_BSLS,   _______,
+_______,   _______,   _______,    _______,  _______,   KC_Launch,                             _______,   _______,   _______,   _______,   _______,   _______,
+KC_WSH,    KC_WSV,    KC_WNP,     KC_WPP,   KC_WRF,    _______,                               _______,   KC_HOME,   KC_UP,     KC_END,    KC_INS,    _______,
+_______,   KC_MXL,    KC_MXR,     KC_MAX,   KC_MIN,    KC_MAXI,                                         _______,   KC_LEFT,   KC_DOWN,   KC_RGHT,   _______,   _______,
+_______,   KC_MWSL,   KC_MWSR,    KC_MWL,   KC_MWR,    KC_MINI,                                         _______,   KC_PGUP,   _______,   KC_PGDN,   KC_BSLS,   _______,
     ADJUST,  QK_BOOT,  _______,  _______,  _______,  _______,          _______,    _______,  _______,  _______,  QK_BOOT,  _______,
                                                                       _______,          _______
     ),
