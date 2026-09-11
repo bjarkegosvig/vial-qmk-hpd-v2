@@ -24,7 +24,8 @@
 #define KC_WIF  LCTL(KC_EQL) // wezterm increase front size
 #define KC_WDF  LCTL(KC_MINUS) // wezterm decrease font size
 #define KC_WRF  LCTL(KC_0) // wezterm reset front size
-#define KC_Launch LGUI(LALT(KC_SPACE))
+#define KC_Launch LGUI(LALT(KC_SPACE)) // windows cmd launcher
+#define KC_WLNC LALT(KC_L) // wezterm launcher
 
 enum bgk_keycodes {
   KCAE = SAFE_RANGE,
@@ -106,9 +107,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT(
 KC_ESC,         KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                             KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSPC,
-KC_TAB,         KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                                             KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS,
+KC_TAB,         KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                                             KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_EQL,
 OSM(MOD_LSFT),  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,                                             KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
-OSM(MOD_LCTL),  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                             KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,
+OSM(MOD_LCTL),  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                             KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_MINS,
                     LOWER,  KC_PGUP,  OSM(MOD_LCTL),  KC_SPACE, KC_ENTER,  KC_GRV,             KC_LGUI,   OSM(MOD_LSFT),  KC_BSPC,    OSM(MOD_LALT),  KC_PGDN,  RAISE,
                                                                            KC_MUTE,            KC_MUTE
     ),
@@ -134,8 +135,8 @@ OSM(MOD_LCTL),  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                   
 
 
 [_LOWER] = LAYOUT(
-_______,   KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,                                      KC_F6,     KC_F7,     KC_F8,     KC_F9,     KC_F10,    KC_F11,
-KC_PLUS,   KC_PIPE,   KC_LCBR,    KC_PERC,  KC_RCBR,   KC_AMPR,                                    KC_MUTE,   KC_HOME,   KC_UP,     KC_END,    KC_INS,    KC_PLUS,
+KC_GRV,    KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,                                      KC_F6,     KC_F7,     KC_F8,     KC_F9,     KC_F10,    KC_F11,
+KC_GT,   KC_PIPE,   KC_LCBR,    KC_PERC,  KC_RCBR,   KC_AMPR,                                    KC_MUTE,   KC_HOME,   KC_UP,     KC_END,    KC_INS,    KC_PLUS,
 _______,   KC_HASH,   KC_LPRN,    KC_DLR,   KC_RPRN,   KC_ASTR,                                    KC_MPLY,   KC_LEFT,   KC_DOWN,   KC_RGHT,   KC_NO,     KC_TRNS,
 _______,   KC_AT,     KC_LBRC,    KC_CIRC,  KC_RBRC,   KC_TILD,                                    KC_VOLD,   KC_VOLU,   KC_MNXT,   KC_MPRV,   KC_BSLS,   KC_PIPE,
                     _______,  QK_BOOT,  _______,  _______,  _______,  _______,            _______,  _______,  _______,  _______,  QK_BOOT,     ADJUST,
@@ -144,7 +145,7 @@ _______,   KC_AT,     KC_LBRC,    KC_CIRC,  KC_RBRC,   KC_TILD,                 
 
 /*
  * ,-----------------------------------------------.           ,-----------------------------------------------.
- * |            |      |      |      |      |Launch|           |      |      |      |      |      |            |
+ * |            |      |      |      |      |Launch|           | WEZ L|      |      |      |      |            |
  * |------------+------+------+------+------+------|           |------+------+------+------+------+------------|
  * |            |      |      |      |      |      |           |      | Home |  Up  | End  |Insert|            |
  * |------------+------+------+------+------+------|           |------+------+------+------+------+------------|
@@ -161,10 +162,10 @@ _______,   KC_AT,     KC_LBRC,    KC_CIRC,  KC_RBRC,   KC_TILD,                 
  */
 
 [_RAISE] = LAYOUT(
-_______,   _______,   _______,    _______,  _______,   KC_Launch,                             _______,   _______,   _______,   _______,   _______,   _______,
-KC_WSH,    KC_WSV,    KC_WNP,     KC_WPP,   KC_WRF,    _______,                               _______,   KC_HOME,   KC_UP,     KC_END,    KC_INS,    _______,
-_______,   KC_MXL,    KC_MXR,     KC_MAX,   KC_MIN,    KC_MAXI,                               _______,   KC_LEFT,   KC_DOWN,   KC_RGHT,   _______,   _______,
-_______,   KC_MWSL,   KC_MWSR,    KC_MWL,   KC_MWR,    KC_MINI,                               _______,   KC_PGUP,   _______,   KC_PGDN,   KC_BSLS,   _______,
+_______,   _______,   _______,    _______,  _______,   KC_Launch,                             KC_WLNC,  _______,   _______,   _______,   _______,   _______,
+KC_WSH,    KC_WSV,    KC_WNP,     KC_WPP,   KC_WRF,    _______,                               _______,  KC_HOME,   KC_UP,     KC_END,    KC_INS,    _______,
+_______,   KC_MXL,    KC_MXR,     KC_MAX,   KC_MIN,    KC_MAXI,                               _______,  KC_LEFT,   KC_DOWN,   KC_RGHT,   _______,   _______,
+_______,   KC_MWSL,   KC_MWSR,    KC_MWL,   KC_MWR,    KC_MINI,                               _______,  KC_PGUP,   _______,   KC_PGDN,   KC_BSLS,   _______,
     ADJUST,  QK_BOOT,  _______,  _______,  _______,  _______,          _______,          _______,  _______,  _______,  QK_BOOT,  _______,
                                                                        _______,          _______
     ),
@@ -210,8 +211,8 @@ _______,  _______,  _______,  _______,  _______,  EH_TXT,                       
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [0] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}, //
-    [1] = {ENCODER_CCW_CW(MS_WHLD, _______)}, //
-    [2] = {ENCODER_CCW_CW(MS_WHLU, _______)}, //
+    [1] = {ENCODER_CCW_CW(MS_WHLD, MS_WHLU)}, //
+    [2] = {ENCODER_CCW_CW(QK_MOUSE_WHEEL_LEFT, QK_MOUSE_WHEEL_RIGHT)}, //
     [3] = {ENCODER_CCW_CW(_______, _______)}, //
     [4] = {ENCODER_CCW_CW(_______, _______)}, //
 };
