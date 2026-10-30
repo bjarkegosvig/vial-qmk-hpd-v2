@@ -1,12 +1,12 @@
 {
-    "keyboard_name": "M4CR0Pad v3",
+    "keyboard_name": "Macropad",
     "manufacturer": "Ergohaven",
     "url": "https://ergohaven.xyz",
     "maintainer": "Ergohaven",
     "usb": {
         "vid": "0xE126",
         "pid": "0x0042",
-        "device_version": "4.0.5"
+        "device_version": "4.1.0"
     },
     "features": {
         "rgb_matrix": true
@@ -80,7 +80,7 @@
     },
     "backlight": {
         "pin": "GP23",
-        "levels": 10,
+        "levels": 31,
         "breathing": false
       },
     "encoder": {
